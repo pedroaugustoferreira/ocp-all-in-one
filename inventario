@@ -1,5 +1,6 @@
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-monitoring/config.yml 
 
 
 
@@ -56,3 +57,14 @@ openshift_cloudprovider_vsphere_datastore=LAB_Local_Raid5
 openshift_master_identity_providers=[{'name': 'Local_Auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
 openshift_master_htpasswd_users={'pedro': '$apr1$QD/hlKZ9$LlvF0L6/EDo/gpKNU/QW50'} #master
 
+# MONITORING
+openshift_cluster_monitoring_operator_install=true
+openshift_cluster_monitoring_operator_prometheus_storage_capacity=20Gi
+openshift_cluster_monitoring_operator_alertmanager_storage_capacity=2Gi
+#openshift_cluster_monitoring_operator_node_selector={"node-role.kubernetes.io/infra": "true"}
+#openshift_cluster_monitoring_operator_alertmanager_config= |+
+openshift_cluster_monitoring_operator_prometheus_storage_enabled=true
+openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
+#openshift_cluster_monitoring_operator_prometheus_storage_class_name=
+#openshift_cluster_monitoring_operator_alertmanager_storage_class_name=
+openshift_monitor_availability_install=true
