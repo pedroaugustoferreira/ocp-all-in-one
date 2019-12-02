@@ -42,9 +42,9 @@ oreg_auth_password="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIyN2U1NWI5YmM4N2Y0ZjY0OWU5Njg
 
 ansible_ssh_user=root
 openshift_deployment_type=openshift-enterprise
-
 #openshift_disable_check=openshift_check_min_host_memory_gb
 
+# Storage persistente - VMWARE
 openshift_cloudprovider_kind=vsphere
 openshift_cloudprovider_vsphere_username=administrator@vsphere.local 
 openshift_cloudprovider_vsphere_password=W@ster123
