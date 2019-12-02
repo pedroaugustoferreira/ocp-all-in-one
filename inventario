@@ -51,3 +51,8 @@ openshift_cloudprovider_vsphere_password=W@ster123
 openshift_cloudprovider_vsphere_host=192.168.100.102
 openshift_cloudprovider_vsphere_datacenter=SVC-DC
 openshift_cloudprovider_vsphere_datastore=LAB_Local_Raid5
+
+# Autenticacao
+openshift_master_identity_providers=[{'name': 'Local_Auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_users={'pedro': '$apr1$QD/hlKZ9$LlvF0L6/EDo/gpKNU/QW50'} #master
+
