@@ -57,7 +57,7 @@ conf_sshkey()
 	echo "---- ssh key "
 	rm -rf /root/.ssh/*
 	cat /dev/zero | ssh-keygen -q -N ""
-	sshpass -p "jakarosa" ssh-copy-id -o StrictHostKeyChecking=no root@ocp02.example.com
+	sshpass -p "jakarosa" ssh-copy-id -o StrictHostKeyChecking=no root@$host_full
 }
 
 conf_yum()
