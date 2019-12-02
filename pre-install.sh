@@ -4,11 +4,28 @@ host_full=ocp-all-in-one01.example.com
 host=ocp-all-in-one01
 ip="192.168.100.250"
 gw="192.168.100.1"
+vm_path="OCP"
 
-export GOVC_URL='192.168.100.102'
-export GOVC_USERNAME='administrator@vsphere.local'
-export GOVC_PASSWORD='W@ster123'
-export GOVC_INSECURE=1
+
+vm_path_full=$(govc ls -L|grep vm)/$vm_path/$host_full
+
+
+
+echo $vm_path_full
+
+
+echo "govc vm.change -e=\"disk.enableUUID=1\" -vm='$vm_path_full'"|sh
+
+exit 1
+
+
+cat /root/.bashrc|egrep -v "GOVC" > /tmp/.bashrc
+echo "export GOVC_URL='192.168.100.102'"                  >> /tmp/.bashrc
+echo "export GOVC_USERNAME='administrator@vsphere.local'" >> /tmp/.bashrc
+echo "export GOVC_PASSWORD='W@ster123'"                   >> /tmp/.bashrc
+echo "export GOVC_INSECURE=1"                             >> /tmp/.bashrc
+mv -f /tmp/.bashrc /root/.bashrc
+. /root/.bashrc
 
 
 echo "---- hostname "
@@ -26,7 +43,7 @@ echo "BOOTPROTO=static"      >> /tmp/network
 echo "DNS1=$gw"              >> /tmp/network
 
 cat /tmp/network
-mv /tmp/network /etc/sysconfig/network-scripts/ifcfg-ens192
+mv -f /tmp/network /etc/sysconfig/network-scripts/ifcfg-ens192
 
 echo " "
 echo "---- /etc/hosts"
@@ -54,11 +71,11 @@ yum -y install atomic-openshift-clients openshift-ansible
 yum -y update
 yum install -y wget
 chmod +x jq-linux64
-mv jq-linux64 /usr/bin/jq
+mv -f jq-linux64 /usr/bin/jq
 curl -LO https://github.com/vmware/govmomi/releases/download/v0.15.0/govc_linux_amd64.gz
 gunzip -f govc_linux_amd64.gz
 chmod +x govc_linux_amd64
-mv govc_linux_amd64 /usr/bin/govc
+mv -f govc_linux_amd64 /usr/bin/govc
 
 #[root@ocp ~]# cat .bashrc
 #
@@ -68,6 +85,8 @@ mv govc_linux_amd64 /usr/bin/govc
 #export GOVC_INSECURE=1
 ##
 # $govc vm.change -e="disk.enableUUID=1" -vm='VM Path'
+
+govc vm.change -e="disk.enableUUID=1" -vm="$(govc ls -L $(govc ls -L|grep vm)/$vm_path/$host_full)"
 
 govc ls -L
 
