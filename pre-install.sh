@@ -1,8 +1,8 @@
 #!/bin/bash
 
-host_full=ocp02.example.com
-host=ocp02
-ip="192.168.100.230"
+host_full=ocp-all-in-one01.example.com
+host=ocp-all-in-one01
+ip="192.168.100.250"
 gw="192.168.100.1"
 
 export GOVC_URL='192.168.100.102'
@@ -70,3 +70,6 @@ mv govc_linux_amd64 /usr/bin/govc
 # $govc vm.change -e="disk.enableUUID=1" -vm='VM Path'
 
 govc ls -L
+
+
+systemctl restart network
