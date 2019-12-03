@@ -68,3 +68,22 @@ openshift_cluster_monitoring_operator_alertmanager_storage_enabled=true
 #openshift_cluster_monitoring_operator_prometheus_storage_class_name=
 #openshift_cluster_monitoring_operator_alertmanager_storage_class_name=
 openshift_monitor_availability_install=true
+
+# METRICIS
+openshift_metrics_install_metrics=true
+openshift_metrics_server_install=true
+openshift_metrics_hawkular_hostname=metrics.example.com
+#openshift_metrics_hawkular_key=
+#openshift_metrics_hawkular_cert=
+#openshift_metrics_hawkular_ca=
+#openshift_metrics_hawkular_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_metrics_hawkular_replicas=1
+openshift_metrics_cassandra_replicas=1
+#openshift_metrics_cassandra_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_metrics_cassandra_storage_type=dynamic
+openshift_metrics_cassandra_pvc_prefix=metrics
+openshift_metrics_cassandra_pvc_size=20Gi
+#openshift_metrics_cassandra_pvc_storage_class_name=glusterfs-storage-block
+openshift_metrics_heapster_standalone=false
+#openshift_metrics_heapster_nodeselector={"node-role.kubernetes.io/infra": "true"}
+openshift_metrics_install_hawkular_agent=false
