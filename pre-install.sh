@@ -70,7 +70,7 @@ conf_yum()
 	#   11  subscription-manager attch --pool=8a85f99b6e12cc13016e3baad78f45f0
 	#   12  subscription-manager attach --pool=8a85f99b6e12cc13016e3baad78f45f0
 	#   13  subscription-manager repos --disable="*"
-	yum -y install atomic-openshift-clients openshift-ansible
+	yum -y install atomic-openshift-clients openshift-ansible screen
 	yum -y update
 	yum install -y wget
 }
