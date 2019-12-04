@@ -120,5 +120,4 @@ openshift_logging_mux_client_mode=maximal
 openshift_logging_mux_file_buffer_storage_type=pvc
 openshift_logging_mux_file_buffer_pvc_size=5Gi
 openshift_logging_mux_file_buffer_pvc_dynamic=true
-[root@ocp-all-in-one01 ocp-all-in-one]# 
 
