@@ -11,4 +11,7 @@ Depois de rodar a parte do monitoring todos os pods são recriados do projetos o
 
 As metricas no grafana ja aparecem
 
+oc adm policy add-cluster-role-to-user cluster-admin pedro
+
+
 
