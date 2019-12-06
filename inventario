@@ -52,6 +52,7 @@ openshift_master_cluster_method=native
 ansible_ssh_user=root
 openshift_deployment_type=openshift-enterprise
 openshift_disable_check=openshift_check_min_host_memory_gb
+openshift_disable_check=memory_availability
 
 # Storage persistente - VMWARE
 openshift_cloudprovider_kind=vsphere
