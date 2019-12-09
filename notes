@@ -6,6 +6,16 @@ Ordem de execução:
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-logging/config.yml 
 
 
+------------------------------------------------------------------------------------------------------
+Na instalação os 3 pods criado primeiramente do no docker que são etcd, controllers e api
+
+[root@ocp-all-in-one01 ocp-all-in-one]# docker ps
+WARNING: Error loading config file:/root/.docker/config.json - EOF
+CONTAINER ID        IMAGE                                             COMMAND             CREATED             STATUS              PORTS               NAMES
+ac562b0d188d        registry.redhat.io/openshift3/ose-pod:v3.11.154   "/usr/bin/pod"      35 seconds ago      Up 14 seconds                           k8s_POD_master-etcd-ocp-all-in-one01.example.com_kube-system_e5a6eecf685ef3f044f092ac69d091dc_0
+050407d00d06        registry.redhat.io/openshift3/ose-pod:v3.11.154   "/usr/bin/pod"      35 seconds ago      Up 14 seconds                           k8s_POD_master-controllers-ocp-all-in-one01.example.com_kube-system_598eab3cfd21a819f8c59b831d258836_0
+020b2c860643        registry.redhat.io/openshift3/ose-pod:v3.11.154   "/usr/bin/pod"      35 seconds ago      Up 14 seconds                           k8s_POD_master-api-ocp-all-in-one01.example.com_kube-system_2068b07baab5f5c05b43dce6a68d1100_0
+------------------------------------------------------------------------------------------------------
 
 Depois de rodar a parte do monitoring todos os pods são recriados do projetos openshift-monitoring 
 
