@@ -22,6 +22,7 @@ conf_hostname()
 	echo "---- hostname"
 	hostnamectl set-hostname $host_full
 	hostname
+	timedatectl set-timezone America/Sao_Paulo
 }
 
 conf_network()
