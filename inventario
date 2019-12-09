@@ -1,54 +1,5 @@
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
-
-#[root@ocp-all-in-one01 ocp-all-in-one]# 
-#INSTALLER STATUS ********************************************************************************************************************************************
-#Initialization                 : Complete (0:00:15)
-#Health Check                   : Complete (0:01:30)
-#Node Bootstrap Preparation     : Complete (0:20:44)
-#etcd Install                   : Complete (0:00:55)
-#NFS Install                    : Complete (0:00:16)
-#Master Install                 : Complete (0:08:19)
-#Master Additional Install      : Complete (0:07:20)
-#Node Join                      : Complete (0:01:31)
-#Hosted Install                 : Complete (0:00:54)
-#Cluster Monitoring Operator    : Complete (0:01:14)
-#Web Console Install            : Complete (0:00:32)
-#Console Install                : Complete (0:00:38)
-#Service Catalog Install        : Complete (0:03:39)
-#Node Problem Detector Install  : Complete (0:00:09)
-#[root@ocp-all-in-one01 ocp-all-in-one]#
-
-#[root@ocp-all-in-one01 ocp-all-in-one]# oc get pods --all-namespaces
-#NAMESPACE                           NAME                                              READY     STATUS    RESTARTS   AGE
-#default                             docker-registry-1-ft5n7                           1/1       Running   0          1h
-#default                             registry-console-1-v4mgl                          1/1       Running   0          1h
-#default                             router-1-wvqn7                                    1/1       Running   0          1h
-#kube-service-catalog                apiserver-cmd88                                   1/1       Running   0          1h
-#kube-service-catalog                controller-manager-qzpb8                          1/1       Running   3          1h
-#kube-system                         master-api-ocp-all-in-one01.example.com           1/1       Running   3          1h
-#kube-system                         master-controllers-ocp-all-in-one01.example.com   1/1       Running   3          1h
-#kube-system                         master-etcd-ocp-all-in-one01.example.com          1/1       Running   2          1h
-#openshift-ansible-service-broker    asb-1-42qv5                                       1/1       Running   0          1h
-#openshift-console                   console-7c6b745986-6ndhv                          1/1       Running   0          1h
-#openshift-monitoring                alertmanager-main-0                               3/3       Running   0          1h
-#openshift-monitoring                alertmanager-main-1                               3/3       Running   0          1h
-#openshift-monitoring                alertmanager-main-2                               3/3       Running   0          1h
-#openshift-monitoring                cluster-monitoring-operator-74fb8b6dcf-tc7f9      1/1       Running   0          1h
-#openshift-monitoring                grafana-857fc848bf-rm4pk                          2/2       Running   0          1h
-#openshift-monitoring                kube-state-metrics-75c4d6dc-p2pm2                 3/3       Running   0          1h
-#openshift-monitoring                node-exporter-xp8g8                               2/2       Running   0          1h
-#openshift-monitoring                prometheus-k8s-0                                  4/4       Running   1          1h
-#openshift-monitoring                prometheus-k8s-1                                  4/4       Running   1          1h
-#openshift-monitoring                prometheus-operator-7855c8646b-dq2p5              1/1       Running   0          1h
-#openshift-node-problem-detector     node-problem-detector-ll224                       1/1       Running   0          1h
-#openshift-node                      sync-mp8fm                                        1/1       Running   1          1h
-#openshift-sdn                       ovs-tjlpl                                         1/1       Running   2          1h
-#openshift-sdn                       sdn-2lw8n                                         1/1       Running   3          1h
-#openshift-template-service-broker   apiserver-z65gg                                   1/1       Running   0          1h
-#openshift-web-console               webconsole-85494cdb8c-mjm4x                       1/1       Running   0          1h
-#[root@ocp-all-in-one01 ocp-all-in-one]# 
-
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-monitoring/config.yml 
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/metrics-server/config.yml 
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml
