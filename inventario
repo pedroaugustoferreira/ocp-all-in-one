@@ -1,5 +1,24 @@
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
 # ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+
+#[root@ocp-all-in-one01 ocp-all-in-one]# 
+#INSTALLER STATUS ********************************************************************************************************************************************
+#Initialization                 : Complete (0:00:15)
+#Health Check                   : Complete (0:01:30)
+#Node Bootstrap Preparation     : Complete (0:20:44)
+#etcd Install                   : Complete (0:00:55)
+#NFS Install                    : Complete (0:00:16)
+#Master Install                 : Complete (0:08:19)
+#Master Additional Install      : Complete (0:07:20)
+#Node Join                      : Complete (0:01:31)
+#Hosted Install                 : Complete (0:00:54)
+#Cluster Monitoring Operator    : Complete (0:01:14)
+#Web Console Install            : Complete (0:00:32)
+#Console Install                : Complete (0:00:38)
+#Service Catalog Install        : Complete (0:03:39)
+#Node Problem Detector Install  : Complete (0:00:09)
+#[root@ocp-all-in-one01 ocp-all-in-one]#
+
 #[root@ocp-all-in-one01 ocp-all-in-one]# oc get pods --all-namespaces
 #NAMESPACE                           NAME                                              READY     STATUS    RESTARTS   AGE
 #default                             docker-registry-1-ft5n7                           1/1       Running   0          1h
