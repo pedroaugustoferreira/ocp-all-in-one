@@ -1,0 +1,64 @@
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/prerequisites.yml
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-monitoring/config.yml 
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/metrics-server/config.yml 
+# ansible-playbook -i inventario /usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml
+
+[OSEv3:children]
+
+nfs
+
+masters
+
+etcd
+
+nodes
+
+[nfs]
+
+ocp-all-in-one01.example.com 
+
+[masters]
+
+ocp-all-in-one01.example.com
+
+[etcd]
+
+ocp-all-in-one01.example.com
+
+[nodes]
+
+## All-In-One with CRI-O
+
+#ocp.example.com openshift_node_group_name='node-config-all-in-one-crio' openshift_node_problem_detector_install=true
+
+## All-In-One with Docker
+
+ocp-all-in-one01.example.com openshift_node_group_name='node-config-all-in-one' openshift_node_problem_detector_install=true
+
+[OSEv3:vars]
+#https://catalog.redhat.com/software/containers/explore/
+oreg_auth_user=6583642|ocp
+oreg_auth_password="eyJhbGciOiJSUzUxMiJ9.eyJzdWIiOiIyN2U1NWI5YmM4N2Y0ZjY0OWU5Njg2YWM1NDY4MzNkNSJ9.fE9JRkstam1knBJuhNlQE5cjBUY3n7qGE4REPVat2FdCY3iQMSOFwTV0J99QTL3up4P987ojVVEwxvb8oHm6N2P6xWvdT3Ms9YAi0ChG4QmHY7-Bt1gLRanYc7kxsVhi3X-ItrceNA-r7UjGaB02qACYN8s07IhQmhiBwyPTY786B-WPMqd5bZkZxMQYeexGZ2vSwetC2MJPcA2GdlBjyxKJBHkQ1Cf9yTCuOEnn59Dzo7stYnnvbmKCQaqPklDpcMzuyfIHty4XxTilQGd3dyKY0UDy8rUsV2bBgs7Vadv410OzqnBCeVUt6DIPTmR--e7ElWL2wOkrmNRMAe6Og_OVP1lyn11JwCVHPVrSTI9sEtvF0l1yJ8aePxBheDx8_PmwCch0O0DkZA-YdyI64G3lChpSyc9cIwyoDvQyhkql-6pdY0fy4wHkkS4DuhaJVUf9SvWjh35fjsYmIi1KWNlKHaJdQIVHjj0FvUdrDalXyXDp9Ci7DLGQ1RpYWj2Ak5Ws7sXoo3C2r4xYPEhm5JVSNQTdiOIQoIRoo7ytuI1ncaHVlIJ-WxaKhJhMlVsqkGyQjUqL8Z-yBgDriXxrsbTWPAIrrMcmKU2QjNB_o1ILF4ULteqaUfPgNwQSSFrFEDrSHsoooX5IryrK1lfMQq1DjQgQrh7OXotU7Ct-Hro"
+
+openshift_master_default_subdomain=apps.example.com
+openshift_master_cluster_hostname=api.example.com
+openshift_master_cluster_public_hostname=console.example.com
+openshift_master_cluster_method=native
+
+ansible_ssh_user=root
+openshift_deployment_type=openshift-enterprise
+openshift_disable_check=openshift_check_min_host_memory_gb
+openshift_disable_check=memory_availability
+
+# Storage persistente - VMWARE
+openshift_cloudprovider_kind=vsphere
+openshift_cloudprovider_vsphere_username=administrator@vsphere.local 
+openshift_cloudprovider_vsphere_password=W@ster123
+openshift_cloudprovider_vsphere_host=192.168.100.102
+openshift_cloudprovider_vsphere_datacenter=SVC-DC
+openshift_cloudprovider_vsphere_datastore=LAB_Local_Raid5
+
+# Autenticacao
+openshift_master_identity_providers=[{'name': 'Local_Auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider'}]
+openshift_master_htpasswd_users={'pedro': '$apr1$QD/hlKZ9$LlvF0L6/EDo/gpKNU/QW50'} #master
