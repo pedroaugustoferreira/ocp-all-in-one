@@ -1,61 +1,71 @@
-#[root@ocp-all-in-one01 ocp-all-in-one]#  ansible-playbook -i inventario_v1 /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml;
-
-#INSTALLER STATUS ********************************************************************************************************************************************
-#Initialization                 : Complete (0:00:16)
-#Health Check                   : Complete (0:00:48)
-#Node Bootstrap Preparation     : Complete (0:22:42)
-#etcd Install                   : Complete (0:00:52)
-#NFS Install                    : Complete (0:00:17)
-#Master Install                 : Complete (0:06:57)
-#Master Additional Install      : Complete (0:07:13)
-#Node Join                      : Complete (0:01:32)
-#Hosted Install                 : Complete (0:00:55)
-#Cluster Monitoring Operator    : Complete (0:01:12)
-#Web Console Install            : Complete (0:00:43)
-#Console Install                : Complete (0:00:36)
-#Service Catalog Install        : Complete (0:04:51)
-#Node Problem Detector Install  : Complete (0:00:08)
-#[root@ocp-all-in-one01 ocp-all-in-one]#
-
-#[root@ocp-all-in-one01 ocp-all-in-one]# oc get pods --all-namespaces -o wide
-#NAMESPACE                           NAME                                              READY     STATUS    RESTARTS   AGE       IP                NODE                           NOMINATED NODE
-#default                             docker-registry-1-lrcl9                           1/1       Running   0          19m       10.128.0.6        ocp-all-in-one01.example.com   <none>
-#default                             registry-console-1-8zvh9                          1/1       Running   0          19m       10.128.0.5        ocp-all-in-one01.example.com   <none>
-#default                             router-1-d4qws                                    1/1       Running   0          19m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#kube-service-catalog                apiserver-lsz88                                   1/1       Running   0          15m       10.128.0.17       ocp-all-in-one01.example.com   <none>
-#kube-service-catalog                controller-manager-mzl72                          1/1       Running   3          15m       10.128.0.18       ocp-all-in-one01.example.com   <none>
-#kube-system                         master-api-ocp-all-in-one01.example.com           1/1       Running   3          30m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#kube-system                         master-controllers-ocp-all-in-one01.example.com   1/1       Running   3          30m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#kube-system                         master-etcd-ocp-all-in-one01.example.com          1/1       Running   2          31m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#openshift-ansible-service-broker    asb-1-rl2d7                                       1/1       Running   0          13m       10.128.0.21       ocp-all-in-one01.example.com   <none>
-#openshift-console                   console-65558748bc-pzgrc                          1/1       Running   0          17m       10.128.0.12       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                alertmanager-main-0                               3/3       Running   0          16m       10.128.0.14       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                alertmanager-main-1                               3/3       Running   0          16m       10.128.0.15       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                alertmanager-main-2                               3/3       Running   0          16m       10.128.0.16       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                cluster-monitoring-operator-74fb8b6dcf-5f65f      1/1       Running   0          18m       10.128.0.7        ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                grafana-857fc848bf-xmlhf                          2/2       Running   0          17m       10.128.0.9        ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                kube-state-metrics-75c4d6dc-dvqrl                 3/3       Running   0          15m       10.128.0.19       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                node-exporter-6n6t2                               2/2       Running   0          15m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                prometheus-k8s-0                                  4/4       Running   1          17m       10.128.0.11       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                prometheus-k8s-1                                  4/4       Running   1          16m       10.128.0.13       ocp-all-in-one01.example.com   <none>
-#openshift-monitoring                prometheus-operator-7855c8646b-k2fg8              1/1       Running   0          18m       10.128.0.8        ocp-all-in-one01.example.com   <none>
-#openshift-node-problem-detector     node-problem-detector-84lgd                       1/1       Running   0          11m       10.128.0.23       ocp-all-in-one01.example.com   <none>
-#openshift-node                      sync-grbfr                                        1/1       Running   1          29m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#openshift-sdn                       ovs-r69c4                                         1/1       Running   2          28m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#openshift-sdn                       sdn-n56zv                                         1/1       Running   3          28m       192.168.100.250   ocp-all-in-one01.example.com   <none>
-#openshift-template-service-broker   apiserver-4sm9m                                   1/1       Running   0          13m       10.128.0.22       ocp-all-in-one01.example.com   <none>
-#openshift-web-console               webconsole-85494cdb8c-xvh7b                       1/1       Running   0          17m       10.128.0.10       ocp-all-in-one01.example.com   <none>
-#[root@ocp-all-in-one01 ocp-all-in-one]# 
-
-#[root@ocp-all-in-one01 ocp-all-in-one]# oc get pv --all-namespaces -o wide
-#NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                    STORAGECLASS       REASON    AGE
-#pvc-81c9decf-1b53-11ea-88af-0050568232ba   50Gi       RWO            Delete           Bound     default/registry-claim   vsphere-standard             20m
-
-#[root@ocp-all-in-one01 ocp-all-in-one]# oc get pvc --all-namespaces -o wide
-#NAMESPACE   NAME             STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
-#default     registry-claim   Bound     pvc-81c9decf-1b53-11ea-88af-0050568232ba   50Gi       RWO            vsphere-standard   20m
-
-
+# [root@ocp-all-in-one01 ocp-all-in-one]#  ansible-playbook -i inventario_v1 /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml;
+# 
+# INSTALLER STATUS ********************************************************************************************************************************************
+# Initialization                 : Complete (0:00:15)
+# Health Check                   : Complete (0:00:55)
+# Node Bootstrap Preparation     : Complete (0:18:13)
+# etcd Install                   : Complete (0:00:54)
+# NFS Install                    : Complete (0:00:15)
+# Master Install                 : Complete (0:08:15)
+# Master Additional Install      : Complete (0:07:09)
+# Node Join                      : Complete (0:01:27)
+# Hosted Install                 : Complete (0:00:52)
+# Cluster Monitoring Operator    : Complete (0:01:12)
+# Web Console Install            : Complete (0:00:55)
+# Console Install                : Complete (0:00:27)
+# Monitor Availability           : Complete (0:00:11)
+# Service Catalog Install        : Complete (0:03:36)
+# Node Problem Detector Install  : Complete (0:00:10)
+# 
+# [root@ocp-all-in-one01 ocp-all-in-one]# oc get pods --all-namespaces -o wide
+# NAMESPACE                           NAME                                              READY     STATUS    RESTARTS   AGE       IP                NODE                           NOMINATED NODE
+# default                             docker-registry-1-j6sgf                           1/1       Running   0          1h        10.128.0.4        ocp-all-in-one01.example.com   <none>
+# default                             registry-console-1-nvrfp                          1/1       Running   0          1h        10.128.0.6        ocp-all-in-one01.example.com   <none>
+# default                             router-1-89cqm                                    1/1       Running   0          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# kube-service-catalog                apiserver-j6f9x                                   1/1       Running   0          1h        10.128.0.17       ocp-all-in-one01.example.com   <none>
+# kube-service-catalog                controller-manager-hvrdz                          1/1       Running   2          1h        10.128.0.18       ocp-all-in-one01.example.com   <none>
+# kube-system                         master-api-ocp-all-in-one01.example.com           1/1       Running   3          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# kube-system                         master-controllers-ocp-all-in-one01.example.com   1/1       Running   3          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# kube-system                         master-etcd-ocp-all-in-one01.example.com          1/1       Running   2          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# openshift-ansible-service-broker    asb-1-q6pfx                                       1/1       Running   0          1h        10.128.0.24       ocp-all-in-one01.example.com   <none>
+# openshift-console                   console-5fdc8b8574-zddkj                          1/1       Running   0          1h        10.128.0.12       ocp-all-in-one01.example.com   <none>
+# openshift-monitor-availability      monitor-app-create-67f79bc679-6dxzr               2/2       Running   0          1h        10.128.0.13       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                alertmanager-main-0                               3/3       Running   0          1h        10.128.0.20       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                alertmanager-main-1                               3/3       Running   0          1h        10.128.0.21       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                alertmanager-main-2                               3/3       Running   0          1h        10.128.0.22       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                cluster-monitoring-operator-74fb8b6dcf-m5s6f      1/1       Running   0          1h        10.128.0.7        ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                grafana-857fc848bf-wgd6q                          2/2       Running   0          1h        10.128.0.9        ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                kube-state-metrics-75c4d6dc-vqp5t                 3/3       Running   0          1h        10.128.0.26       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                node-exporter-srnnt                               2/2       Running   0          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                prometheus-k8s-0                                  4/4       Running   1          1h        10.128.0.11       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                prometheus-k8s-1                                  4/4       Running   1          1h        10.128.0.14       ocp-all-in-one01.example.com   <none>
+# openshift-monitoring                prometheus-operator-7855c8646b-9xlcr              1/1       Running   0          1h        10.128.0.8        ocp-all-in-one01.example.com   <none>
+# openshift-node-problem-detector     node-problem-detector-wfw8z                       1/1       Running   0          1h        10.128.0.27       ocp-all-in-one01.example.com   <none>
+# openshift-node                      sync-tg6tp                                        1/1       Running   2          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# openshift-sdn                       ovs-vzxt2                                         1/1       Running   2          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# openshift-sdn                       sdn-s98vx                                         1/1       Running   2          1h        192.168.100.250   ocp-all-in-one01.example.com   <none>
+# openshift-template-service-broker   apiserver-8cqh4                                   1/1       Running   0          1h        10.128.0.25       ocp-all-in-one01.example.com   <none>
+# openshift-web-console               webconsole-85494cdb8c-tbxpn                       1/1       Running   0          1h        10.128.0.10       ocp-all-in-one01.example.com   <none>
+# [root@ocp-all-in-one01 ocp-all-in-one]# 
+# 
+# [root@ocp-all-in-one01 ocp-all-in-one]# oc get pv --all-namespaces -o wide
+# NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                                                           STORAGECLASS       REASON    AGE
+# pvc-50aed401-1b5e-11ea-b5e1-0050568232ba   20Gi       RWO            Delete           Bound     openshift-monitoring/prometheus-k8s-db-prometheus-k8s-0         vsphere-standard             1h
+# pvc-7531f74d-1b5e-11ea-b5e1-0050568232ba   20Gi       RWO            Delete           Bound     openshift-monitoring/prometheus-k8s-db-prometheus-k8s-1         vsphere-standard             1h
+# pvc-8d089f95-1b5e-11ea-b5e1-0050568232ba   2Gi        RWO            Delete           Bound     openshift-monitoring/alertmanager-main-db-alertmanager-main-0   vsphere-standard             1h
+# pvc-b5b2c8f1-1b5e-11ea-b5e1-0050568232ba   2Gi        RWO            Delete           Bound     openshift-monitoring/alertmanager-main-db-alertmanager-main-1   vsphere-standard             1h
+# pvc-bc393353-1b5e-11ea-b5e1-0050568232ba   2Gi        RWO            Delete           Bound     openshift-monitoring/alertmanager-main-db-alertmanager-main-2   vsphere-standard             1h
+# pvc-f0e9c62a-1b5d-11ea-b5e1-0050568232ba   50Gi       RWO            Delete           Bound     default/registry-claim                                          vsphere-standard             1h
+# 
+# [root@ocp-all-in-one01 ocp-all-in-one]# oc get pvc --all-namespaces -o wide
+# NAMESPACE              NAME                                       STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+# default                registry-claim                             Bound     pvc-f0e9c62a-1b5d-11ea-b5e1-0050568232ba   50Gi       RWO            vsphere-standard   1h
+# openshift-monitoring   alertmanager-main-db-alertmanager-main-0   Bound     pvc-8d089f95-1b5e-11ea-b5e1-0050568232ba   2Gi        RWO            vsphere-standard   1h
+# openshift-monitoring   alertmanager-main-db-alertmanager-main-1   Bound     pvc-b5b2c8f1-1b5e-11ea-b5e1-0050568232ba   2Gi        RWO            vsphere-standard   1h
+# openshift-monitoring   alertmanager-main-db-alertmanager-main-2   Bound     pvc-bc393353-1b5e-11ea-b5e1-0050568232ba   2Gi        RWO            vsphere-standard   1h
+# openshift-monitoring   prometheus-k8s-db-prometheus-k8s-0         Bound     pvc-50aed401-1b5e-11ea-b5e1-0050568232ba   20Gi       RWO            vsphere-standard   1h
+# openshift-monitoring   prometheus-k8s-db-prometheus-k8s-1         Bound     pvc-7531f74d-1b5e-11ea-b5e1-0050568232ba   20Gi       RWO            vsphere-standard   1h
+# [root@ocp-all-in-one01 ocp-all-in-one]# 
 
 [OSEv3:children]
 
