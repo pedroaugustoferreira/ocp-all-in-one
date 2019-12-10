@@ -7,42 +7,41 @@ install()
 	echo "---------- deploy_cluster - Start "
 	ansible-playbook -i inventario_v1 /usr/share/ansible/openshift-ansible/playbooks/deploy_cluster.yml;
 	echo "---------- deploy_cluster - Finish"
-
+	
 	sleep 120
-	echo "-- deploy_cluster"      > pods.log
-	oc get pods --all-namespaces >> pods.log
+	echo "---------- deploy_cluster"      > pods.txt
+	echo "---------- deploy_cluster"      > pv.txt
+	echo "---------- deploy_cluster"      > pvc.txt
+	oc get pods --all-namespaces -o wide >> pods.txt
+	oc get pv --all-namespaces -o wide   >> pv.txt
+	oc get pvc --all-namespaces -o wide  >> pvc.txt
 	
-	echo "---------- openshift-monitoring - Start"
-	ansible-playbook -i inventario_v2 /usr/share/ansible/openshift-ansible/playbooks/openshift-monitoring/config.yml 
-	echo "---------- openshift-monitoring - Finish "
 
-        sleep 120
-        echo "-- openshift-monitoring" >> pods.log
-        oc get pods --all-namespaces   >> pods.log
-
-	echo "---------- metrics-server - Start"
+	echo "---------- metrics - Start"
 	ansible-playbook -i inventario_v3 /usr/share/ansible/openshift-ansible/playbooks/metrics-server/config.yml
-        echo "---------- metrics-server - Finish "
-
-        sleep 120
-        echo "-- metrics-server"      >> pods.log
-        oc get pods --all-namespaces  >> pods.log
-
-	echo "---------- openshift-metrics - Start "
+	sleep 120
 	ansible-playbook -i inventario_v3 /usr/share/ansible/openshift-ansible/playbooks/openshift-metrics/config.yml
-        echo "---------- openshift-metrics - Finish "
+        echo "---------- metrics - Finish "
 
         sleep 120
-        echo "-- openshift-metrics"   >> pods.log
-        oc get pods --all-namespaces  >> pods.log
+	echo "---------- metrics"            >> pods.txt
+	echo "---------- metrics"            >> pv.txt
+	echo "---------- metrics"            >> pvc.txt
+	oc get pods --all-namespaces -o wide >> pods.txt
+	oc get pv --all-namespaces -o wide   >> pv.txt
+	oc get pvc --all-namespaces -o wide  >> pvc.txt
 
-	echo "---------- openshift-logging - Start "
+	echo "---------- logging - Start "
 	ansible-playbook -i inventario_v4 /usr/share/ansible/openshift-ansible/playbooks/openshift-logging/config.yml
-	echo "---------- openshift-logging - Finish "
-
-        echo "-- openshift-logging"   >> pods.log
-        oc get pods --all-namespaces  >> pods.log
+	echo "---------- logging - Finish "
 	
+	sleep 120
+	echo "---------- logging"            >> pods.txt
+	echo "---------- logging"            >> pv.txt
+	echo "---------- logging"            >> pvc.txt
+	oc get pods --all-namespaces -o wide >> pods.txt
+	oc get pv --all-namespaces -o wide   >> pv.txt
+	oc get pvc --all-namespaces -o wide  >> pvc.txt
 	
 }
 
