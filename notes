@@ -26,6 +26,11 @@ oc adm policy add-cluster-role-to-user cluster-admin pedro
 Entradas no hosts
 192.168.100.250 console.example.com console.apps.example.com httpd-example-teste.apps.example.com grafana-openshift-monitoring.apps.example.com kibana.example.com prometheus-k8s-openshift-monitoring.apps.example.com alertmanager-main-openshift-monitoring.apps.example.com syspass.teste1.svc.cluster.local syspass-teste1.apps.example.com syspass2-teste1.apps.example.com docker-syspass.teste.svc.cluster.local  docker-syspass-teste.apps.example.com docker-registry-default.apps.example.com
 
+Stress test
+curl -s "http://yourappp.com/your_page_to_test.php?[1-10000]"
+
+
+
 
 
 
