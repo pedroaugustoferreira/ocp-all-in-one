@@ -68,25 +68,18 @@
 # [root@ocp-all-in-one01 ocp-all-in-one]# 
 
 [OSEv3:children]
-
 nfs
-
 masters
-
 etcd
-
 nodes
 
 [nfs]
-
 ocp-all-in-one01.example.com 
 
 [masters]
-
 ocp-all-in-one01.example.com
 
 [etcd]
-
 ocp-all-in-one01.example.com
 
 [nodes]
