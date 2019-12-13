@@ -74,6 +74,8 @@ conf_yum()
 	yum -y install atomic-openshift-clients openshift-ansible screen
 	yum -y update
 	yum install -y wget
+	subscription-manager repos --enable="rhel-7-server-rpms"  --enable="rhel-7-server-extras-rpms" --enable="rhel-7-server-ose-3.11-rpms" --enable="rhel-7-server-ansible-2.6-rpms"
+	
 }
 
 conf_govc()
