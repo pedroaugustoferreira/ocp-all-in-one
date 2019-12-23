@@ -93,6 +93,7 @@ conf_govc()
 	#export GOVC_INSECURE=1
 	##
 	# $govc vm.change -e="disk.enableUUID=1" -vm='VM Path'
+	# govc vm.change -e="disk.enableUUID=1" -vm='/SVC-DC/vm/VMs- Pedro Ferreira/OCP/lab-pd-node1.ocp01.com'
 	
 	vm_path_full=$(govc ls -L|grep vm)/$vm_path/$host_full
 	echo $vm_path_full
